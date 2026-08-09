@@ -1,6 +1,6 @@
 # Inferência em Transistor de Elétron Único (SET)
 
-Sou Luiz Tiago Wilcke. Este repositório contém o código que usei para recuperar, de forma não-paramétrica, a deriva e a volatilidade local de um Single-Electron Transistor a partir de trajetórias simuladas.
+Este repositório contém o código que usei para recuperar, de forma não-paramétrica, a deriva e a volatilidade local de um Single-Electron Transistor a partir de trajetórias simuladas.
 
 A base teórica está nos Capítulos 5, 6, 7 e 18 do meu livro *Métodos Avançados em Inferência Estatística Não-Paramétrica*.
 

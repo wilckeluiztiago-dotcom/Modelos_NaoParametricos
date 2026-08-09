@@ -1,6 +1,6 @@
 # Inferência Não-Paramétrica em Sensor de Grafeno (GQD)
 
-Código desenvolvido por **Luiz Tiago Wilcke** para estudar a dinâmica de um sensor quântico de grafeno (Graphene Quantum Dot) sob equações diferenciais estocásticas com saltos.
+Código desenvolvido para estudar a dinâmica de um sensor quântico de grafeno (Graphene Quantum Dot) sob equações diferenciais estocásticas com saltos.
 
 O material parte da obra *Métodos Avançados em Inferência Estatística Não-Paramétrica* e concentra três blocos principais: geração de trajetórias Itô-Lévy, recuperação da deriva por projeção ortogonal e recuperação da volatilidade local a partir da variação quadrática.
 

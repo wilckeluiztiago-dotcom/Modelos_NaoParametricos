@@ -2,7 +2,7 @@
 
 **Inferência Estatística Não-Paramétrica em Equações Diferenciais Estocásticas de Itô-Lévy com Saltos**
 
-Este repositório implementa um pipeline completo de simulação e estimação não-paramétrica para o **Nanosensor Supercondutor para Neutrinos (CSNND)**. O código simula trajetórias de recuo nuclear induzidas por interações coherentes elásticas neutrino-núcleo (CEvNS) e estima a função de deriva via projeção ortogonal sobre bases de Legendre.
+Este repositório implementa um pipeline completo de simulação e estimação não-paramétrica para o **Nanosensor Supercondutor para Neutrinos (CSNND)**. O código simula trajetórias de recuo nuclear induzidas por interações coerentes elásticas neutrino-núcleo (CEvNS) e estima a função de deriva via projeção ortogonal sobre bases de Legendre.
 
 > **Origem Teórica**  
 > Toda a teoria matemática subjacente — Equações Diferenciais Estocásticas com saltos, estimadores de projeção, matrizes de design empíricas, estabilidade espectral, cálculo de Malliavin, U-estatísticas degeneradas e teoria minimax — foi extraída integralmente do livro:  
@@ -43,13 +43,13 @@ O CSNND opera em regime sub-Kelvin e detecta recuos nucleares coerentes provocad
 O processo de estado $X = (X_t)_{t \in [0,T]}$ satisfaz a EDE de Itô-Lévy:
 
 $$
-\mathrm{d}X_t = b_0(X_t)\,\mathrm{d}t + \sigma_0(X_t)\,\mathrm{d}W_t + \mathrm{d}J_t,
+dX_t = b_0(X_t)\,dt + \sigma_0(X_t)\,dW_t + dJ_t,
 $$
 
 onde:
 
-- $W = (W_t)_{t\geq 0}$ é um movimento browniano padrão unidimensional;
-- $J = (J_t)_{t\geq 0}$ é um processo de Poisson composto (saltos de CEvNS):
+- $W = (W_t)_{t \geq 0}$ é um movimento browniano padrão unidimensional;
+- $J = (J_t)_{t \geq 0}$ é um processo de Poisson composto (saltos de CEvNS):
 
 $$
 J_t = \sum_{i=1}^{N_t} \xi_i,
@@ -91,7 +91,7 @@ $$
 0 & \text{caso contrário},
 \end{cases}
 \quad
-\xi_k\sim\mathcal{N}(0,0.60^2).
+\xi_k \sim \mathcal{N}(0,0.60^2).
 $$
 
 São geradas $N$ trajetórias independentes $(X^{(i)})_{i=1}^N$ (paradigma de múltiplas trajetórias curtas — Capítulo 7.1).
@@ -100,23 +100,23 @@ São geradas $N$ trajetórias independentes $(X^{(i)})_{i=1}^N$ (paradigma de m�
 
 ## 4. Base Ortonormal de Legendre
 
-A estimação é realizada no subespaço de dimensão finita $S_m = \operatorname{span}\{\varphi_0,\dots,\varphi_{m-1}\}$, onde $\{\varphi_j\}$ é o sistema ortonormal de Legendre (após mudança de escala $x\mapsto x/1.5$ para o intervalo $[-1,1]$):
+A estimação é realizada no subespaço de dimensão finita $S_m = \mathrm{span}\{\varphi_0,\dots,\varphi_{m-1}\}$, onde $\{\varphi_j\}$ é o sistema ortonormal de Legendre (após mudança de escala $x\mapsto x/1.5$ para o intervalo $[-1,1]$):
 
 $$
 \begin{align*}
-\varphi_0(x) &= \sqrt{\tfrac12},\\
-\varphi_1(x) &= \sqrt{\tfrac32}\,x,\\
-\varphi_2(x) &= \sqrt{\tfrac52}\cdot\tfrac12(3x^2-1),\\
-\varphi_3(x) &= \sqrt{\tfrac72}\cdot\tfrac12(5x^3-3x),\\
-\varphi_4(x) &= \sqrt{\tfrac92}\cdot\tfrac18(35x^4-30x^2+3),\\
-\varphi_5(x) &= \sqrt{\tfrac{11}2}\cdot\tfrac18(63x^5-70x^3+15x).
+\varphi_0(x) &= \sqrt{\tfrac{1}{2}},\\
+\varphi_1(x) &= \sqrt{\tfrac{3}{2}}\,x,\\
+\varphi_2(x) &= \sqrt{\tfrac{5}{2}}\cdot\tfrac{1}{2}(3x^2-1),\\
+\varphi_3(x) &= \sqrt{\tfrac{7}{2}}\cdot\tfrac{1}{2}(5x^3-3x),\\
+\varphi_4(x) &= \sqrt{\tfrac{9}{2}}\cdot\tfrac{1}{8}(35x^4-30x^2+3),\\
+\varphi_5(x) &= \sqrt{\tfrac{11}{2}}\cdot\tfrac{1}{8}(63x^5-70x^3+15x).
 \end{align*}
 $$
 
 Em geral,
 
 $$
-\varphi_j(x) = \sqrt{j+\tfrac12}\,P_j(x),
+\varphi_j(x) = \sqrt{j+\tfrac{1}{2}}\,P_j(x),
 $$
 
 onde $P_j$ são os polinômios de Legendre clássicos. A dimensão utilizada no código é $m=6$.
@@ -130,42 +130,42 @@ onde $P_j$ são os polinômios de Legendre clássicos. A dimensão utilizada no 
 O estimador minimiza o risco empírico contínuo (Capítulo 3, Seção 3.4.1):
 
 $$
-\gamma_N(b) = \frac1{NT}\sum_{i=1}^N\int_0^T\bigl|b(X_s^{(i)})\bigr|^2\mathrm{d}s
-- \frac2{NT}\sum_{i=1}^N\int_0^T b(X_s^{(i)})\,\mathrm{d}X_s^{(i)}.
+\gamma_N(b) = \frac{1}{NT}\sum_{i=1}^N\int_0^T \bigl|b(X_s^{(i)})\bigr|^2\,ds
+- \frac{2}{NT}\sum_{i=1}^N\int_0^T b(X_s^{(i)})\,dX_s^{(i)}.
 $$
 
 ### Matriz de Design Empírica Contínua
 
 $$
-\hat\Psi_m = \frac1{NT}\sum_{i=1}^N\sum_{k=0}^{n-1}
-\varphi(X_k^{(i)})\varphi(X_k^{(i)})^\top\Delta t
-\quad\in\mathbb{R}^{m\times m}
+\hat{\Psi}_m = \frac{1}{NT}\sum_{i=1}^N\sum_{k=0}^{n-1}
+\varphi(X_k^{(i)})\varphi(X_k^{(i)})^\top \Delta t
+\quad \in \mathbb{R}^{m\times m}
 \qquad\text{(Equação 7.5)}.
 $$
 
 ### Vetor de Dados Estocástico
 
 $$
-\hat Z_m = \frac1{NT}\sum_{i=1}^N\sum_{k=0}^{n-1}
+\hat{Z}_m = \frac{1}{NT}\sum_{i=1}^N\sum_{k=0}^{n-1}
 \varphi(X_k^{(i)})\,\Delta X_k^{(i)}
-\quad\in\mathbb{R}^m
+\quad \in \mathbb{R}^m
 \qquad\text{(Equação 7.6)},
 $$
 
-onde $\Delta X_k^{(i)} = X_{k+1}^{(i)}-X_k^{(i)}$.
+onde $\Delta X_k^{(i)} = X_{k+1}^{(i)} - X_k^{(i)}$.
 
 ### Estimador de Projeção
 
 O estimador de coeficientes é a solução do sistema linear:
 
 $$
-\hat\theta_m = \hat\Psi_m^{-1}\hat Z_m,
+\hat{\theta}_m = \hat{\Psi}_m^{-1}\hat{Z}_m,
 $$
 
 e a função de deriva estimada é:
 
 $$
-\hat b_m(x) = \hat\theta_m^\top\varphi(x) = \sum_{j=0}^{m-1}\hat\theta_{m,j}\,\varphi_j(x).
+\hat{b}_m(x) = \hat{\theta}_m^\top \varphi(x) = \sum_{j=0}^{m-1}\hat{\theta}_{m,j}\,\varphi_j(x).
 $$
 
 ---
@@ -175,20 +175,20 @@ $$
 A estabilidade da matriz empírica é monitorada pelos autovalores:
 
 $$
-\lambda_{\min}(\hat\Psi_m)\qquad\text{e}\qquad\lambda_{\max}(\hat\Psi_m).
+\lambda_{\min}(\hat{\Psi}_m)\qquad\text{e}\qquad\lambda_{\max}(\hat{\Psi}_m).
 $$
 
 Para garantir invertibilidade (Desigualdade de Bernstein Matricial — Capítulo 24.6, Teorema 24.2), aplica-se regularização ridge:
 
 $$
-\hat\Psi_m^{\mathrm{reg}} = \hat\Psi_m + \varepsilon\cdot\lambda_{\max}(\hat\Psi_m)\,I_m,
+\hat{\Psi}_m^{\mathrm{reg}} = \hat{\Psi}_m + \varepsilon\cdot\lambda_{\max}(\hat{\Psi}_m)\,I_m,
 \qquad\varepsilon = 10^{-5}.
 $$
 
 O estimador regularizado torna-se:
 
 $$
-\hat\theta_m^{\mathrm{reg}} = \bigl(\hat\Psi_m^{\mathrm{reg}}\bigr)^{-1}\hat Z_m.
+\hat{\theta}_m^{\mathrm{reg}} = \bigl(\hat{\Psi}_m^{\mathrm{reg}}\bigr)^{-1}\hat{Z}_m.
 $$
 
 ---
@@ -204,8 +204,9 @@ $$
 com núcleo simétrico baseado na decomposição de Hoeffding:
 
 $$
-H_2(X^{(i)},X^{(j)}) = \Bigl(\tfrac1T\int_0^T\bigl(X_t^{(i)}-X_t^{(j)}\bigr)^2\mathrm{d}t\Bigr)
-\exp\Bigl(-0.2\cdot\operatorname{Var}(X^{(i)}-X^{(j)})\Bigr).
+H_2\bigl(X^{(i)},X^{(j)}\bigr)
+= \Biggl(\frac{1}{T}\int_0^T\bigl(X_t^{(i)}-X_t^{(j)}\bigr)^2\,dt\Biggr)
+\exp\Biggl(-0.2\cdot\mathrm{Var}\bigl(X^{(i)}-X^{(j)}\bigr)\Biggr).
 $$
 
 O Teorema do Limite Central para U-estatísticas degeneradas (Capítulo 17, Seção 17.3) justifica a normalidade assintótica das flutuações.
@@ -217,14 +218,16 @@ O Teorema do Limite Central para U-estatísticas degeneradas (Capítulo 17, Seç
 Para processos não-adaptados, a isometria de Skorokhod (Capítulo 25, Equação 25.8) fornece a correção de variância:
 
 $$
-\mathbb{E}\bigl[\delta(u)^2\bigr] = \mathbb{E}\bigl[\|u\|_{L^2([0,T])}^2\bigr]
+\mathbb{E}\bigl[\delta(u)^2\bigr]
+= \mathbb{E}\bigl[\|u\|_{L^2([0,T])}^2\bigr]
 + \mathbb{E}\bigl[\langle Du,Du\rangle_{L^2([0,T]^2)}\bigr],
 $$
 
 onde $\delta$ é a integral de Skorokhod e $D$ a derivada de Malliavin. No código, a correção numérica é implementada como:
 
 $$
-\operatorname{Var}_{\mathrm{Skorokhod}} = \operatorname{Var}_{\mathrm{base}} + 0.15\cdot\operatorname{Var}_{\mathrm{base}}.
+\mathrm{Var}_{\mathrm{Skorokhod}}
+= \mathrm{Var}_{\mathrm{base}} + 0.15\cdot\mathrm{Var}_{\mathrm{base}}.
 $$
 
 ---
@@ -234,8 +237,9 @@ $$
 O risco de estimação é avaliado pela norma $L^2$ integrada sobre uma grade espacial $\mathcal{G}$:
 
 $$
-R_N(\hat b_m) = \int_{\mathcal{G}}\bigl(b_0(x)-\hat b_m(x)\bigr)^2\,\mathrm{d}x
-\approx \operatorname{trapezoid}\bigl((b_0-\hat b_m)^2,\mathcal{G}\bigr).
+R_N(\hat{b}_m)
+= \int_{\mathcal{G}}\bigl(b_0(x)-\hat{b}_m(x)\bigr)^2\,dx
+\approx \mathrm{trapezoid}\bigl((b_0-\hat{b}_m)^2,\mathcal{G}\bigr).
 $$
 
 (Referência: Capítulo 3, Seção 3.4.4 e Capítulo 7, Seção 7.5.)
@@ -244,15 +248,15 @@ $$
 
 ## 10. Parâmetros Físicos do CSNND
 
-| Parâmetro                    | Símbolo / Valor          | Unidade | Descrição                                      |
-|-----------------------------|--------------------------|---------|------------------------------------------------|
-| Temperatura do banho        | $T_{\mathrm{bath}}=0.05$ | K       | Operação sub-Kelvin                            |
-| Gap supercondutor           | $\Delta=1.8\times10^{-22}$ | J     | Gap de energia do nanofio                      |
-| Massa nuclear efetiva       | $m_N=1.5\times10^{-25}$  | kg      | Massa efetiva para CEvNS                       |
-| Seção de choque coerente    | $\sigma_{\nu N}=4.2\times10^{-44}$ | cm² | Seção de choque neutrino-núcleo            |
-| Constante de Boltzmann      | $k_B=1.380649\times10^{-23}$ | J/K | —                                          |
-| Intensidade do fluxo        | $\lambda=0.45$           | s⁻¹     | Taxa média de colisões CEvNS                   |
-| Desvio-padrão do recuo      | $\varsigma=0.60$         | —       | Amplitude típica do salto                      |
+| Parâmetro                    | Símbolo / Valor                  | Unidade | Descrição                                      |
+|-----------------------------|----------------------------------|---------|------------------------------------------------|
+| Temperatura do banho        | $T_{\mathrm{bath}}=0.05$         | K       | Operação sub-Kelvin                            |
+| Gap supercondutor           | $\Delta=1.8\times 10^{-22}$      | J       | Gap de energia do nanofio                      |
+| Massa nuclear efetiva       | $m_N=1.5\times 10^{-25}$         | kg      | Massa efetiva para CEvNS                       |
+| Seção de choque coerente    | $\sigma_{\nu N}=4.2\times 10^{-44}$ | cm²  | Seção de choque neutrino-núcleo                |
+| Constante de Boltzmann      | $k_B=1.380649\times 10^{-23}$    | J/K     | —                                              |
+| Intensidade do fluxo        | $\lambda=0.45$                   | s⁻¹     | Taxa média de colisões CEvNS                   |
+| Desvio-padrão do recuo      | $\varsigma=0.60$                 | —       | Amplitude típica do salto                      |
 
 ---
 
@@ -274,9 +278,9 @@ O pipeline:
 
 1. Simula $N=160$ trajetórias de comprimento $n=1500$ passos;
 2. Constrói a base de Legendre de dimensão $m=6$;
-3. Estima $\hat b_m$ via projeção de mínimos quadrados regularizada;
+3. Estima $\hat{b}_m$ via projeção de mínimos quadrados regularizada;
 4. Avalia U-estatísticas degeneradas e a isometria de Skorokhod;
-5. Calcula o risco $L^2$ e gera o gráfico comparativo $b_0(x)$ vs. $\hat b_m(x)$.
+5. Calcula o risco $L^2$ e gera o gráfico comparativo $b_0(x)$ vs. $\hat{b}_m(x)$.
 
 ---
 
@@ -304,21 +308,21 @@ csnnd-neutrinos-pipeline/
 
 ## 13. Referências Teóricas (Wilcke, 2026)
 
-| Capítulo / Seção | Conteúdo Utilizado                                      |
-|------------------|---------------------------------------------------------|
-| Cap. 3, §3.4.1   | Função objetivo estocástica $\gamma_N(b)$               |
-| Cap. 3, §3.4.4   | Risco integrado $L^2$                                   |
-| Cap. 3, §3.5     | Polinômios ortogonais de Jacobi/Legendre                |
-| Cap. 5, §5.1–5.5 | Bases ortonormais e estabilidade espectral              |
-| Cap. 6, §6.2–6.3 | Fundamentação e simulação Euler-Maruyama                |
-| Cap. 7, §7.1     | Paradigma de múltiplas trajetórias curtas independentes |
-| Cap. 7, §7.3     | Matriz de design contínua $\hat\Psi_m$ e vetor $\hat Z_m$|
-| Cap. 7, §7.5     | Validação de risco                                      |
-| Cap. 8, §8.1     | Dinâmicas com saltos (Poisson composto)                 |
-| Cap. 8, §8.1.1   | Estimação da deriva na presença de saltos               |
-| Cap. 17, §17.2–17.3 | Decomposição de Hoeffding e TLC para U-estatísticas  |
-| Cap. 24, §24.6   | Desigualdade de Bernstein matricial (Teorema 24.2)      |
-| Cap. 25, §25.2–25.4 | Derivada de Malliavin e isometria de Skorokhod       |
+| Capítulo / Seção     | Conteúdo Utilizado                                      |
+|----------------------|---------------------------------------------------------|
+| Cap. 3, §3.4.1       | Função objetivo estocástica $\gamma_N(b)$               |
+| Cap. 3, §3.4.4       | Risco integrado $L^2$                                   |
+| Cap. 3, §3.5         | Polinômios ortogonais de Jacobi/Legendre                |
+| Cap. 5, §5.1–5.5     | Bases ortonormais e estabilidade espectral              |
+| Cap. 6, §6.2–6.3     | Fundamentação e simulação Euler-Maruyama                |
+| Cap. 7, §7.1         | Paradigma de múltiplas trajetórias curtas independentes |
+| Cap. 7, §7.3         | Matriz de design contínua $\hat{\Psi}_m$ e vetor $\hat{Z}_m$ |
+| Cap. 7, §7.5         | Validação de risco                                      |
+| Cap. 8, §8.1         | Dinâmicas com saltos (Poisson composto)                 |
+| Cap. 8, §8.1.1       | Estimação da deriva na presença de saltos               |
+| Cap. 17, §17.2–17.3  | Decomposição de Hoeffding e TLC para U-estatísticas     |
+| Cap. 24, §24.6       | Desigualdade de Bernstein matricial (Teorema 24.2)      |
+| Cap. 25, §25.2–25.4  | Derivada de Malliavin e isometria de Skorokhod          |
 
 ---
 
@@ -333,4 +337,4 @@ Pipeline CSNND — Nanosensor Supercondutor para Neutrinos.
 
 ---
 
-*Repositório preparado para GitHub com todas as equações do modelo renderizadas em LaTeX.*
+*Repositório preparado para GitHub com todas as equações do modelo renderizadas em LaTeX (macros compatíveis com o MathJax do GitHub).*

@@ -105,4 +105,4 @@ Wilcke, L. T. *Métodos Avançados em Inferência Estatística Não-Paramétrica
 
 ---
 
-Qualquer dúvida sobre a implementação ou sobre a teoria por trás, fale com o autor.
+Qualquer dúvida sobre a implementação ou sobre a teoria por trás, mande um e-mail para wilckeluiztiago@gmail.com 

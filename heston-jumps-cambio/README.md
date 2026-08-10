@@ -91,15 +91,17 @@ $$
 com limiar \( c = 2{,}55 \) e \( \hat{\sigma} \) o desvio-padrão amostral dos retornos logarítmicos. A intensidade anualizada é estimada por:
 
 $$
-\hat{\lambda} = \frac{\#\{\text{saltos}\}}{T} \times 252
+\hat{\lambda} = \frac{N_{\text{saltos}}}{T} \times 252
 $$
+
+onde \( N_{\text{saltos}} \) representa a quantidade de saltos detectados e \( T \) o número total de dias úteis.
 
 ### Volatilidade realizada
 
 A proxy de alta frequência da volatilidade anualizada é calculada por janela móvel de 21 dias:
 
 $$
-\hat{\sigma}_t^{\text{real}} = \sqrt{252} \cdot \operatorname{Std}\{r_{t-20},\dots,r_t\}
+\hat{\sigma}_t^{\text{real}} = \sqrt{252} \cdot \mathrm{Std}\{r_{t-20},\dots,r_t\}
 $$
 
 A variância inicial e o nível de longo prazo são obtidos a partir dessa série:
@@ -119,7 +121,7 @@ v_{t+\Delta t} &= \max\Bigl( v_t + \kappa(\theta - v_t)\Delta t + \xi\sqrt{v_t\D
 \end{aligned}
 $$
 
-onde \( Z_1, Z_2 \) são normais padrão correlacionadas e \( N \sim \operatorname{Poisson}(\lambda\Delta t) \).
+onde \( Z_1, Z_2 \) são normais padrão correlacionadas e \( N \sim \mathrm{Poisson}(\lambda\Delta t) \).
 
 ## Parâmetros utilizados
 

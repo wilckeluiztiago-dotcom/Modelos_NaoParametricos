@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 class SimuladorCriseSubprimeRealista:
     """
     Simulador Aprimorado de Contágio Sistêmico (2007-2008) com Calibração Histórica Rigorosa.
-    Fundamentação Teórica: Capítulo 39 (Processos de Ponto Autocitados e Intensidade Condicional)[cite: 3].
+    Fundamentação Teórica: Capítulo 39 (Processos de Ponto Autocitados e Intensidade Condicional).
     """
     def __init__(self, matriz_alfa, matriz_beta):
         self.alfa = np.array(matriz_alfa, dtype=float)  # Matriz de contágio cruzado (\alpha_{ij})

@@ -8,7 +8,7 @@ Este repositório contém a implementação em Python de um modelo estocástico 
 
 ## 📖 Origem Teórica e Fundamentação
 
-As equações, a formulação analítica e os fundamentos teóricos que estruturam este modelo foram retirados do **Capítulo 39 (Processos de Ponto Autocitados e Intensidade Condicional)** da obra de autoria de **Luiz Tiago Wilcke**. 
+As equações, a formulação analítica e os fundamentos teóricos que estruturam este modelo foram retirados do **Capítulo 39 (Processos de Ponto Autocitados e Intensidade Condicional)**
 
 O modelo emprega a teoria de intensidades condicionais para descrever como choques exógenos macroeconômicos e o feedback endógeno (memória de eventos anteriores) interagem para gerar efeitos dominó nos diferentes setores do mercado financeiro.
 

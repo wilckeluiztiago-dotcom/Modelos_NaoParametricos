@@ -3,7 +3,7 @@
 **Autor:** Luiz Tiago Wilcke  
 **Referência Teórica:** *Métodos Avançados em Inferência Estatística Não-Paramétrica: Teoria Matemática, Processos de Difusão e Estimação por Kernel* (Wilcke, 2026, Capítulo 8, Seção 8.1).
 
----
+
 
 ## 📋 Sobre o Projeto
 
@@ -11,7 +11,26 @@ Este repositório implementa um modelo quantitativo avançado de gestão de risc
 
 O sistema foi desenvolvido especificamente para modelar o comportamento do **Ibovespa (^BVSP)** no regime macroeconômico recente (pós-COVID, 2023–2026), capturando assimetrias de cauda, choques sistêmicos de liquidez e incertezas estruturais não explicadas por modelos tradicionais de difusão pura (como Black-Scholes).
 
----
+
+
+## 📐 Formulação Matemática do Modelo
+
+A dinâmica estocástica do log-preço do ativo $X_t = \log S_t$ é descrita por uma EDE de Itô-Lévy que combina uma componente difusiva contínua com descontinuidades puras modeladas por um processo de Poisson composto:
+
+$$dX_t = \left( \mu - \frac{1}{2}\sigma^2 \right) dt + \sigma dW_t + dJ_t$$
+
+onde:
+* $W_t$ é o movimento browniano padrão.
+* $\mu$ é o *drift* e $\sigma$ é a volatilidade instantânea da difusão.
+* $J_t$ é o **Processo de Poisson Composto** que rege os choques e saltos de mercado:
+
+$$J_t = \sum_{k=1}^{N_t} Y_k$$
+
+sendo $N_t$ um processo de Poisson homogêneo de intensidade $\lambda > 0$ (frequência anual de choques) e $Y_k$ as variáveis aleatórias independentes que representam a magnitude percentual de cada salto. Para capturar a curtose e as caudas pesadas características do mercado brasileiro, a distribuição das magnitudes $Y_k$ é modelada via **Distribuição Student-t padronizada** com $\nu = 4$ graus de liberdade:
+
+$$f_Y(y; \mu_j, \sigma_j, \nu) = \frac{\Gamma\left(\frac{\nu+1}{2}\right)}{\sqrt{\nu\pi}\sigma_j \Gamma\left(\frac{\nu}{2}\right)} \left(1 + \frac{1}{\nu}\left(\frac{y - \mu_j}{\sigma_j}\right)^2\right)^{-\frac{\nu+1}{2}}$$
+
+
 
 ## 🛠️ Funcionalidades e Painéis Gráficos
 

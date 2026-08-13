@@ -15,11 +15,11 @@ Os códigos foram escritos para serem executados de forma autônoma, com downloa
 
 Consideramos o processo de difusão unidimensional
 
-\[
+$$
 dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t, \qquad X_0 = x_0,
-\]
+$$
 
-onde \(b:\mathbb{R}\to\mathbb{R}\) é a função de deriva (drift), \(\sigma:\mathbb{R}\to\mathbb{R}\) a volatilidade local e \(W\) um movimento browniano padrão.
+onde $b:\mathbb{R}\to\mathbb{R}$ é a função de deriva (drift), $\sigma:\mathbb{R}\to\mathbb{R}$ a volatilidade local e $W$ um movimento browniano padrão.
 
 As condições clássicas de existência e unicidade (Lipschitz global e crescimento linear) garantem solução forte única.
 
@@ -27,80 +27,80 @@ As condições clássicas de existência e unicidade (Lipschitz global e crescim
 
 A taxa de juros de curto prazo é modelada por
 
-\[
+$$
 dr_t = \kappa(\theta - r_t)\,dt + \sigma\,dW_t.
-\]
+$$
 
 A solução explícita é
 
-\[
+$$
 r_t = \theta + (r_0 - \theta)e^{-\kappa t} + \sigma\int_0^t e^{-\kappa(t-s)}\,dW_s,
-\]
+$$
 
 com distribuição marginal
 
-\[
+$$
 r_t \sim \mathcal{N}\left(\theta+(r_0-\theta)e^{-\kappa t},\ \frac{\sigma^2}{2\kappa}(1-e^{-2\kappa t})\right).
-\]
+$$
 
 ### 1.3 Esquema de Euler-Maruyama
 
-Dada a discretização \(t_k = k\Delta t\), \(\Delta t = T/n\),
+Dada a discretização $t_k = k\Delta t$, $\Delta t = T/n$,
 
-\[
+$$
 Y_{k+1} = Y_k + b(Y_k)\Delta t + \sigma(Y_k)\sqrt{\Delta t}\,Z_{k+1},
-\]
+$$
 
-onde \(Z_{k+1}\sim\mathcal{N}(0,1)\) i.i.d. A taxa de convergência forte é de ordem \(1/2\) e a fraca de ordem \(1\).
+onde $Z_{k+1}\sim\mathcal{N}(0,1)$ i.i.d. A taxa de convergência forte é de ordem $1/2$ e a fraca de ordem $1$.
 
 ### 1.4 Estimador de Nadaraya-Watson para a deriva
 
-A partir de \(N\) trajetórias (ou de uma trajetória discretizada de alta frequência) observamos os pares \((X_{t_k},\Delta X_{t_k})\). O estimador local é
+A partir de $N$ trajetórias (ou de uma trajetória discretizada de alta frequência) observamos os pares $(X_{t_k},\Delta X_{t_k})$. O estimador local é
 
-\[
+$$
 \hat{b}_h(x) = \frac{\displaystyle\sum_{k} K_h(X_{t_k}-x)\,\Delta X_{t_k}}{\displaystyle\sum_{k} K_h(X_{t_k}-x)\,\Delta t},
-\]
+$$
 
-onde \(K_h(u) = h^{-1}K(u/h)\) e \(K\) é um kernel simétrico de segunda ordem (geralmente gaussiano). Sob regularidade de Nikol’skii da densidade ocupacional, o viés é de ordem \(O(h^2)\) e a variância de ordem \(O((Nh)^{-1})\).
+onde $K_h(u) = h^{-1}K(u/h)$ e $K$ é um kernel simétrico de segunda ordem (geralmente gaussiano). Sob regularidade de Nikol’skii da densidade ocupacional, o viés é de ordem $O(h^2)$ e a variância de ordem $O((Nh)^{-1})$.
 
 A normalidade assintótica pontual lê-se
 
-\[
+$$
 \sqrt{Nh}\bigl(\hat{b}_h(x) - b(x) - \mathrm{Bias}_h(x)\bigr) \xrightarrow{d} \mathcal{N}\Bigl(0,\ \frac{R(K)\sigma^2(x)}{T f(x)}\Bigr).
-\]
+$$
 
 ### 1.5 Kernel de Rosenblatt-Parzen e Kernel Gama de Chen
 
-Para densidades com suporte em \(\mathbb{R}\),
+Para densidades com suporte em $\mathbb{R}$,
 
-\[
+$$
 \hat{f}_h(x) = \frac{1}{nh}\sum_{i=1}^n K\Bigl(\frac{x-X_i}{h}\Bigr).
-\]
+$$
 
 Para dados não-negativos (preços, volatilidades), utiliza-se o kernel gama de Chen:
 
-\[
+$$
 \hat{f}_{C,h}(x) = \frac{1}{n}\sum_{i=1}^n K_{G(x/h+1,\,h)}(X_i),
-\]
+$$
 
 com
 
-\[
+$$
 K_{G(\alpha,\beta)}(y) = \frac{y^{\alpha-1}e^{-y/\beta}}{\beta^\alpha\Gamma(\alpha)}.
-\]
+$$
 
 ### 1.6 Modelo de Heston (volatilidade estocástica)
 
 Quando a volatilidade não pode ser tratada como função determinística do preço,
 
-\[
+$$
 \begin{aligned}
 dS_t &= \mu S_t\,dt + \sqrt{V_t}\,S_t\,dW_t^1,\\
 dV_t &= \kappa(\theta-V_t)\,dt + \xi\sqrt{V_t}\,dW_t^2,
 \end{aligned}
-\]
+$$
 
-com \(d\langle W^1,W^2\rangle_t=\rho\,dt\) e condição de Feller \(2\kappa\theta>\xi^2\).
+com $d\langle W^1,W^2\rangle_t=\rho\,dt$ e condição de Feller $2\kappa\theta>\xi^2$.
 
 ---
 
@@ -160,9 +160,9 @@ Implementa o kernel gaussiano padrão e o kernel gama de Chen. A função de den
 
 Recebe uma série de preços, calcula os incrementos e avalia o estimador local sobre uma grade. A largura de banda padrão segue a regra de Silverman
 
-\[
+$$
 h = 1{,}06\,\hat{\sigma}\,n^{-1/5}.
-\]
+$$
 
 O resultado é uma função interpolada que pode ser usada diretamente no simulador.
 

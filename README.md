@@ -20,12 +20,12 @@ O livro **Métodos Avançados em Inferência Estatística Não-Paramétrica** (2
 **Preço: R$ 60,00**
 
 **Pagamento via PIX:**  
-`tiagowilcke94@gmail.com`
+`wilckeluiztiago@gmail.com`
 
 **Como receber o livro:**
 
 1. Realize o pagamento de R$ 60,00 via PIX para a chave acima.
-2. Envie um e-mail para **tiagowilcke94@gmail.com** informando:
+2. Envie um e-mail para **wilckeluiztiago@gmail.com** informando:
    - Nome completo
    - Comprovante do PIX (anexo ou print)
    - E-mail para recebimento do arquivo

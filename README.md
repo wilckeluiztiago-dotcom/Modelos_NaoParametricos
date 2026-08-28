@@ -17,15 +17,15 @@ Todos os códigos deste repositório têm fundamentos matemáticos rigorosos bas
 
 O livro **Métodos Avançados em Inferência Estatística Não-Paramétrica** (2026) contém toda a teoria matemática utilizada nos códigos deste repositório, com demonstrações, exercícios resolvidos e aplicações.
 
-**Preço: R$ 60,00**
+**Preço: R$ 40,00**
 
 **Pagamento via PIX:**  
-`wilckeluiztiago@gmail.com`
+`41997546373`
 
 **Como receber o livro:**
 
-1. Realize o pagamento de R$ 60,00 via PIX para a chave acima.
-2. Envie um e-mail para **wilckeluiztiago@gmail.com** informando:
+1. Realize o pagamento de R$ 40,00 via PIX para a chave acima.
+2. Envie um e-mail para **41997546373** informando:
    - Nome completo
    - Comprovante do PIX (anexo ou print)
    - E-mail para recebimento do arquivo

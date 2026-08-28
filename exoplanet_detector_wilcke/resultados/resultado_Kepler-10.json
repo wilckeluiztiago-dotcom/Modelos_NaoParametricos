@@ -1,0 +1,35 @@
+{
+  "alvo": "Kepler-10 (sintético realista, profundidade ~0.48%)",
+  "missao": "Simulação inspirada em dados reais Kepler / NASA",
+  "n_pontos": 6000,
+  "h_tempo_suavizacao_dias": 0.28,
+  "n_candidatos_transito": 6,
+  "tempos_transito": [
+    12.8521,
+    30.6718,
+    39.5899,
+    57.2762,
+    75.0792,
+    83.9973
+  ],
+  "profundidades_aproximadas": [
+    0.00176,
+    0.00144,
+    0.00219,
+    0.00206,
+    0.00137,
+    0.00187
+  ],
+  "periodo_estimado_dias": 8.918153025504251,
+  "periodo_verdadeiro_dias": 8.88492,
+  "erro_relativo_periodo_pct": 0.374,
+  "figuras": [
+    "figuras/curva_luz_deteccao.png",
+    "figuras/densidade_fluxo.png",
+    "figuras/comparacao_kernel_projecao.png",
+    "figuras/zoom_transito.png",
+    "figuras/criterio_pco.png"
+  ],
+  "autor": "Luiz Tiago Wilcke",
+  "base_teorica": "Métodos Avançados em Inferência Estatística Não-Paramétrica – Teoria Matemática, Processos de Difusão e Estimação por Kernel (2026)"
+}

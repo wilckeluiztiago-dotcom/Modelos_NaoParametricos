@@ -98,7 +98,7 @@ python main.py
 python main.py --alvo "Kepler-10" --missao Kepler
 ```
 
-## Equações Centrais do Modelo (renderizadas)
+## Equações Centrais do Modelo 
 
 ### 1. Estimador de Densidade de Rosenblatt-Parzen (Cap. 2)
 

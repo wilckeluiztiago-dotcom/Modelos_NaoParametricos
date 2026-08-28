@@ -5,7 +5,7 @@
 
 ## Visão Geral
 
-Este projeto implementa um **pipeline completo de detecção de exoplanetas** a partir da **queda de iluminação** (trânsito) em curvas de luz de estrelas, utilizando **exclusivamente** a base teórica do livro de Luiz Tiago Wilcke.
+Este projeto implementa um **pipeline completo de detecção de exoplanetas** a partir da **queda de iluminação** (trânsito) em curvas de luz de estrelas, utilizando **exclusivamente** a base teórica do livro.
 
 O método clássico de trânsito detecta a diminuição periódica do fluxo estelar quando um planeta passa na frente da estrela. Aqui, em vez de modelos paramétricos rígidos (box-least-squares clássico, modelos de Mandel-Agol etc.), usamos:
 

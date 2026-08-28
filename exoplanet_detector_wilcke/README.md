@@ -101,36 +101,46 @@ python main.py --alvo "Kepler-10" --missao Kepler
 ## Equações Centrais do Modelo (renderizadas)
 
 ### 1. Estimador de Densidade de Rosenblatt-Parzen (Cap. 2)
-\[
+
+$$
 \hat{f}_{X,h}(x) = \frac{1}{nh}\sum_{i=1}^{n} K\left(\frac{x-X_i}{h}\right)
-\]
+$$
 
 ### 2. Regressão de Nadaraya-Watson (Cap. 2 e 9)
-\[
+
+$$
 \hat{m}_h(x) = \frac{\sum_{i=1}^{n} K\left(\frac{x-X_i}{h}\right) Y_i}{\sum_{i=1}^{n} K\left(\frac{x-X_i}{h}\right)}
-\]
+$$
 
 ### 3. Critério PCO (Cap. 4)
-\[
-l_{\mathrm{PCO}}(h) = \|\hat{f}_{h_{\min}} - \hat{f}_h\|^2 - \frac{\|K_{h_{\min}} - K_h\|^2}{n} + \lambda \frac{\|K_h\|^2}{n}
-\]
-\[
-\hat{h}_{\mathrm{PCO}} = \arg\min_{h\in\mathcal{H}} l_{\mathrm{PCO}}(h)
-\]
+
+$$
+l_{\mathrm{PCO}}(h) = \left\|\hat{f}_{h_{\min}} - \hat{f}_h\right\|^2 - \frac{\left\|K_{h_{\min}} - K_h\right\|^2}{n} + \lambda \frac{\left\|K_h\right\|^2}{n}
+$$
+
+$$
+\hat{h}_{\mathrm{PCO}} = \arg\min_{h \in \mathcal{H}} l_{\mathrm{PCO}}(h)
+$$
 
 ### 4. Estimador de Projeção de Mínimos Quadrados (Cap. 5 e 7)
-\[
-\hat{b}_{m,N}(x) = \sum_{j=1}^{m} \hat{\theta}_j \varphi_j(x), \quad
-\hat{\theta} = \hat{\Psi}_m^{-1} \hat{\Gamma}_m
-\]
+
+$$
+\hat{b}_{m,N}(x) = \sum_{j=1}^{m} \hat{\theta}_j \varphi_j(x), \qquad \hat{\theta} = \hat{\Psi}_m^{-1} \hat{\Gamma}_m
+$$
 
 ### 5. EDE para o ruído estelar (Cap. 6)
-\[
+
+$$
 dX_t = b(X_t)\,dt + \sigma(X_t)\,dW_t
-\]
+$$
 
 ### 6. Kernel Gama de Chen / modificado (Cap. 3 e 12)
-Usado para bordas de trânsito (fluxo ≥ 0 após normalização).
+
+Usado para bordas de trânsito (fluxo $\geq 0$ após normalização). Forma típica do kernel Gama de Chen:
+
+$$
+K_{x,h}(t) = \frac{t^{x/h}\ e^{-t/h}}{h^{x/h+1}\ \Gamma(x/h+1)}, \quad t > 0
+$$
 
 ## Autor
 
